@@ -31,4 +31,8 @@ public class User {
             library.add(flower);
         }
     }
+
+    public void removeFlowerFromLibrary(Flower flower) {
+        library.remove(flower);
+    }
 }

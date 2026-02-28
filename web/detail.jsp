@@ -44,26 +44,6 @@
 
                     <main class="detail-container">
 
-                        <div class="gallery-section">
-                            <div class="main-img-container">
-                                <img id="main-gallery-img"
-                                    src="<%= flower.getGalleryImages() != null && !flower.getGalleryImages().isEmpty() ? flower.getGalleryImages().get(0) : flower.getImageUrl() %>"
-                                    alt="Main flower" />
-                                <div class="gallery-overlay-hint">
-                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
-                                    </svg>
-                                </div>
-                            </div>
-                            <div class="thumbnail-row">
-                                <% if(flower.getGalleryImages() !=null) { for(String imgUrl : flower.getGalleryImages())
-                                    { %>
-                                    <img src="<%= imgUrl %>" alt="Thumbnail" class="thumb-img" />
-                                    <% } } %>
-                            </div>
-                        </div>
-
                         <div class="media-section">
                             <div class="custom-video-wrapper">
                                 <video id="custom-video" src="<%= flower.getVideoUrl() %>" muted loop></video>
@@ -102,15 +82,48 @@
 
                                 <form action="detail" method="post" style="margin-top: 1rem;">
                                     <input type="hidden" name="id" value="<%= flower.getId() %>" />
-                                    <button type="submit" class="action-btn">
-                                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
-                                            stroke="currentColor" stroke-width="2">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                        Add to Library
-                                    </button>
+                                    <% Boolean isSaved=(Boolean) request.getAttribute("isSaved"); if(isSaved !=null &&
+                                        isSaved) { %>
+                                        <input type="hidden" name="action" value="remove" />
+                                        <button type="submit" class="action-btn" style="background-color: #ff6b6b;">
+                                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                                stroke="currentColor" stroke-width="2">
+                                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                            </svg>
+                                            Remove from Library
+                                        </button>
+                                        <% } else { %>
+                                            <input type="hidden" name="action" value="add" />
+                                            <button type="submit" class="action-btn">
+                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="2">
+                                                    <line x1="12" y1="5" x2="12" y2="19"></line>
+                                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                                </svg>
+                                                Add to Library
+                                            </button>
+                                            <% } %>
                                 </form>
+                            </div>
+                        </div>
+
+                        <div class="gallery-section">
+                            <div class="main-img-container">
+                                <img id="main-gallery-img"
+                                    src="<%= flower.getGalleryImages() != null && !flower.getGalleryImages().isEmpty() ? flower.getGalleryImages().get(0) : flower.getImageUrl() %>"
+                                    alt="Main flower" />
+                                <div class="gallery-overlay-hint">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" />
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="thumbnail-row">
+                                <% if(flower.getGalleryImages() !=null) { for(String imgUrl : flower.getGalleryImages())
+                                    { %>
+                                    <img src="<%= imgUrl %>" alt="Thumbnail" class="thumb-img" />
+                                    <% } } %>
                             </div>
                         </div>
 

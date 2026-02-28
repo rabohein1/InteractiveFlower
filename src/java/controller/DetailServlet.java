@@ -28,7 +28,10 @@ public class DetailServlet extends HttpServlet {
             String username = (String) session.getAttribute("user");
             User user = DataStore.getInstance().getUser(username);
             int libraryCount = user != null ? user.getLibrary().size() : 0;
+            boolean isSaved = user != null && user.getLibrary().contains(flower);
+
             request.setAttribute("libraryCount", libraryCount);
+            request.setAttribute("isSaved", isSaved);
 
             request.getRequestDispatcher("/detail.jsp").forward(request, response);
         } else {
@@ -52,7 +55,12 @@ public class DetailServlet extends HttpServlet {
             String username = (String) session.getAttribute("user");
             User user = DataStore.getInstance().getUser(username);
             if (user != null) {
-                user.addFlowerToLibrary(flower);
+                String action = request.getParameter("action");
+                if ("remove".equals(action)) {
+                    user.removeFlowerFromLibrary(flower);
+                } else {
+                    user.addFlowerToLibrary(flower);
+                }
             }
             response.sendRedirect("library");
         } else {
