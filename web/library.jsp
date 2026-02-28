@@ -45,7 +45,9 @@
                                 for (Flower f : library) {
                                 %>
                                 <div class="card" onclick="window.location.href='detail?id=<%= f.getId() %>'">
-                                    <img src="<%= f.getImageUrl() %>" alt="<%= f.getName() %>" class="card-img" />
+                                    <div class="card-img-container">
+                                        <img src="<%= f.getImageUrl() %>" alt="<%= f.getName() %>" class="card-img" />
+                                    </div>
                                     <div class="card-content">
                                         <h3 class="card-title">
                                             <%= f.getName() %>

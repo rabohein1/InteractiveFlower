@@ -40,8 +40,8 @@
                             </div>
                             <!-- Determine if we are logging in or registering based on checking the register button -->
                             <button type="submit" name="action" value="login" class="auth-btn">Log In</button>
-                            <button type="submit" name="action" value="register" class="auth-btn"
-                                style="background: rgba(255,255,255,0.1); color: white; margin-top: 1rem;">Create
+                            <button type="submit" name="action" value="register" class="auth-btn auth-btn-secondary"
+                                style="margin-top: 1rem;">Create
                                 Account</button>
                         </form>
             </div>

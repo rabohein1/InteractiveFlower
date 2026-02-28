@@ -37,7 +37,7 @@
                 </header>
 
                 <section class="hero">
-                    <h1>Discover Nature's Beauty</h1>
+                    <h1>Discover Nature's <span>Beauty</span></h1>
                     <p>Explore our interactive multimedia guide to the world's most beautiful and fascinating flowers.
                     </p>
                 </section>
@@ -57,7 +57,9 @@
                                 for (Flower f : flowers) {
                                 %>
                                 <div class="card" onclick="window.location.href='detail?id=<%= f.getId() %>'">
-                                    <img src="<%= f.getImageUrl() %>" alt="<%= f.getName() %>" class="card-img" />
+                                    <div class="card-img-container">
+                                        <img src="<%= f.getImageUrl() %>" alt="<%= f.getName() %>" class="card-img" />
+                                    </div>
                                     <div class="card-content">
                                         <h3 class="card-title">
                                             <%= f.getName() %>
